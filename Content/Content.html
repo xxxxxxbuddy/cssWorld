@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 256px;
+            height: 256px;
+
+            text-align: justify;
+        }
+
+        .box:before{
+            content: '';
+            display: inline-block;
+            height: 100%;
+        }
+        .box:after{
+            content: '';
+            display: inline-block;
+            width: 100%;
+        }
+        .bar{
+            display: inline-block;
+            width: 20px;
+            height: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="box"><i class="bar"></i>
+    <i class="bar"></i>
+    <i class="bar"></i>
+    <i class="bar"></i>
+</div>
+<button id="add">增加一条数据</button>
+</body>
+<script>
+    var box = document.querySelector('.box');
+    var bar = document.getElementsByTagName('i');
+    if(box && bar.length){
+        for( var i =0;i < bar.length; i++){
+            bar[i].style.height = Math.ceil(256 * Math.random()) + 'px';
+            bar[i].style.backgroundColor = '#' + (Math.random() + '').slice(-6);
+        }
+    }
+
+    var button = document.getElementById('add');
+    button.onclick = function () {
+        var cloneNode = bar[0].cloneNode();
+        cloneNode.style.height = Math.ceil(256 * Math.random()) + 'px';
+        cloneNode.style.backgroundColor = '#' + (Math.random() + '').slice(-6);
+        box.appendChild(cloneNode);
+
+        if(bar.length === 10)
+            this.setAttribute('disabled','disabled');
+    }
+
+</script>
+</html>
