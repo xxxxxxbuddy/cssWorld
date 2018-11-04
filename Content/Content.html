@@ -33,6 +33,7 @@
     <i class="bar"></i>
     <i class="bar"></i>
     <i class="bar"></i>
+    <i class="bar"></i>
 </div>
 <button id="add">增加一条数据</button>
 </body>
@@ -51,7 +52,8 @@
         var cloneNode = bar[0].cloneNode();
         cloneNode.style.height = Math.ceil(256 * Math.random()) + 'px';
         cloneNode.style.backgroundColor = '#' + (Math.random() + '').slice(-6);
-        box.appendChild(cloneNode);
+        box.innerHTML = box.innerHTML + '\r' + cloneNode.outerHTML;
+        console.log(box.innerHTML);
 
         if(bar.length === 10)
             this.setAttribute('disabled','disabled');
